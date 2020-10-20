@@ -1,5 +1,9 @@
 package com.friendsBook.services;
 
-public interface FriendsBookService {
+import com.friendsBook.domain.User;
 
+public interface FriendsBookService {
+	
+	public User findById(int id);
+	
 }
