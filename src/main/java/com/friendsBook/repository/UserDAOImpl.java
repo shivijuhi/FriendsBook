@@ -67,12 +67,4 @@ public class UserDAOImpl implements UserDAO{
 		return results;
 	}
 
-	@Override
-	public void deleteById(int id) {
-		User p = em.find(User.class, id);
-		if(p!=null) {
-			em.remove(p);
-		}
-	}
-
 }
