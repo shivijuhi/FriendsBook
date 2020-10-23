@@ -44,4 +44,9 @@ public class FriendsBookServicesImplementation implements FriendsBookService {
 		
 	}
 
+	@Override
+	public void removeAnotherUserFromFriendList(int userId,int friendId) {
+		userDao.removeAnotherUserFromFriendList(userId,friendId);
+	}
+
 }

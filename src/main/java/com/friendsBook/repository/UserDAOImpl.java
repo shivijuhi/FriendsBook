@@ -68,4 +68,15 @@ public class UserDAOImpl implements UserDAO{
 		return results;
 	}
 
+	@Override
+	public void removeAnotherUserFromFriendList(int userId,int friendId) {
+		// TODO Auto-generated method stub
+		
+		em.createNativeQuery("DELETE from friend_list where user_id = ? and friend_user_id = ?")
+	      .setParameter(1, userId)
+	      .setParameter(2, friendId)
+	      .executeUpdate();
+		
+	}
+
 }

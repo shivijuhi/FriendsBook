@@ -12,5 +12,6 @@ public interface UserDAO {
 	public void addUserProfile(User user);
 	public void addUserToFriendList(int userId, int friendId) throws GeneralSecurityException;
 	public List<User> viewAllFriendsForUser(int id);
+	public void removeAnotherUserFromFriendList(int userId, int friendId);
 
 }

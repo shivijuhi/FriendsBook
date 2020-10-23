@@ -61,4 +61,17 @@ public class FriendsBookController {
 		
 		return fc.viewAllFriendsForUser(id);
 	}
+	
+	@RequestMapping(value = "/removeAnotherUserFromFriendList", method = RequestMethod.DELETE)
+	public String removeAnotherUserFromFriendList(@RequestBody Map<String, Integer> param) {
+		
+		try {
+			int userId = param.get("number1");
+			int friendId = param.get("number2");
+			fc.removeAnotherUserFromFriendList(userId,friendId);
+			return "User removed successfully";
+		}catch(Exception e) {
+			return "User not removed successfully";
+		}
+	}
 }
