@@ -49,7 +49,7 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public List<User> viewAllFriendsForUser(int id) {
 		
-		Query q = em.createNativeQuery("select * from User where user_id = (select friend_user_id from friend_list where user_id = ?)");
+		Query q = em.createNativeQuery("select * from user where user_id in (select friend_user_id from friend_list where user_id = ? Union select user_id from friend_list where friend_user_id = ?)");
 		q.setParameter(1, id);
 		List<User> results = q.getResultList();
 		return results;
