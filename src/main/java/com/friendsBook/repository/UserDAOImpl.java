@@ -51,6 +51,7 @@ public class UserDAOImpl implements UserDAO{
 		
 		Query q = em.createNativeQuery("select * from user where user_id in (select friend_user_id from friend_list where user_id = ? Union select user_id from friend_list where friend_user_id = ?)");
 		q.setParameter(1, id);
+		q.setParameter(2, id);
 		List<User> results = q.getResultList();
 		return results;
 	}
