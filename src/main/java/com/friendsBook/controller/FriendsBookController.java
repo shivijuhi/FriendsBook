@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.friendsBook.domain.User;
+import com.friendsBook.customException.FriendsBookException;
 import com.friendsBook.services.FriendsBookService;
 
 @RestController
@@ -20,7 +19,7 @@ public class FriendsBookController {
 	@Autowired
 	FriendsBookService fc;
 	
-	@RequestMapping(value = "/fetchUserDetailsById/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
 	public User fetchUserDataByIdUsingPathVariable(@PathVariable int id)
 	{
 		return fc.findById(id);	
@@ -32,18 +31,18 @@ public class FriendsBookController {
 		return fc.getAllUsers();
 	}
 	
-	@RequestMapping(value = "/addUserProfile", method = RequestMethod.POST)
+	@RequestMapping(value = "/profile", method = RequestMethod.POST)
 	public String addUserProfile(@RequestBody User user)
 	{
 		try {
 			fc.addUserProfile(user);
-			return "User added Successfully";
+			return FriendsBookException.USER_ADDITION_SUCCESS;
 		}catch(Exception e) {
-			return "User not added. Please Try Again!";
+			return FriendsBookException.USER_ADDITION_FALIURE;
 		}
 	}
 	
-	@RequestMapping(value = "/addUserAsFriend", method = RequestMethod.POST)
+	@RequestMapping(value = "/friend", method = RequestMethod.POST)
 	public String addUserAsFriend(@RequestBody Map<String, Integer> param) {
 		try {
 			int userId = param.get("number1");
@@ -56,13 +55,13 @@ public class FriendsBookController {
 		}
 	}
 	
-	@RequestMapping(value = "/viewAllFriendsForUser/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/allFriends/{id}", method = RequestMethod.GET)
 	public List<User> getAllFriends(@PathVariable int id) {
 		
 		return fc.viewAllFriendsForUser(id);
 	}
 	
-	@RequestMapping(value = "/removeAnotherUserFromFriendList", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/removeFriend", method = RequestMethod.DELETE)
 	public String removeAnotherUserFromFriendList(@RequestBody Map<String, Integer> param) {
 		
 		try {

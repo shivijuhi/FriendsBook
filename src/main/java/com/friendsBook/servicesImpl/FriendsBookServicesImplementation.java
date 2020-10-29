@@ -1,4 +1,4 @@
-package com.friendsBook.servicesImplementation;
+package com.friendsBook.servicesImpl;
 
 import java.security.GeneralSecurityException;
 import java.util.List;
