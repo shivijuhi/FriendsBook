@@ -1,16 +1,16 @@
-package com.friendsBook.repository;
+package com.friends.book.repository;
 
-import java.security.GeneralSecurityException;
 import java.util.List;
 
-import com.friendsBook.domain.User;
+import com.friends.book.domain.User;
 
 public interface UserDAO {
 	
 	public User findById(int id);
 	public List<User> findAll();
 	public void addUserProfile(User user);
-	public void addUserToFriendList(int userId, int friendId) throws GeneralSecurityException;
+
+	public void addUserToFriendList(int userId, int friendId);
 	public List<User> viewAllFriendsForUser(int id);
 	public void removeAnotherUserFromFriendList(int userId, int friendId);
 

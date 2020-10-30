@@ -1,4 +1,4 @@
-package com.friendsBook.domain;
+package com.friends.book.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

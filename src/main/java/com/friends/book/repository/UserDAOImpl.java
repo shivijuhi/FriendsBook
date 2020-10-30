@@ -1,7 +1,6 @@
-package com.friendsBook.repository;
+package com.friends.book.repository;
 
 
-import java.security.GeneralSecurityException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,7 +10,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.friendsBook.domain.User;
+import com.friends.book.domain.User;
+import com.friends.book.exception.EntityNotFoundException;
 
 @Repository
 @Transactional
@@ -34,7 +34,7 @@ public class UserDAOImpl implements UserDAO{
 	}
 	
 	@Override
-	public void addUserToFriendList(int userId, int friendId) throws GeneralSecurityException {
+	public void addUserToFriendList(int userId, int friendId) throws EntityNotFoundException {
 		
 		if(em.find(User.class, friendId)!=null) {
 			em.createNativeQuery("INSERT INTO friend_list (user_id, friend_user_id) VALUES (?,?)")
@@ -42,7 +42,7 @@ public class UserDAOImpl implements UserDAO{
 		      .setParameter(2, friendId)
 		      .executeUpdate();
 		}else {
-			throw new GeneralSecurityException("User Profile does not exists:::::::::::::::");
+			throw new EntityNotFoundException("User Profile does not exist");
 		}
 	}
 	

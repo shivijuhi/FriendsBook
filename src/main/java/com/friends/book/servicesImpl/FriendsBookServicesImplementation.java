@@ -1,15 +1,14 @@
-package com.friendsBook.servicesImpl;
+package com.friends.book.servicesImpl;
 
-import java.security.GeneralSecurityException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.friendsBook.domain.User;
-import com.friendsBook.repository.FriendsBookRepository;
-import com.friendsBook.repository.UserDAO;
-import com.friendsBook.services.FriendsBookService;
+import com.friends.book.domain.FriendDto;
+import com.friends.book.domain.User;
+import com.friends.book.repository.UserDAO;
+import com.friends.book.services.FriendsBookService;
 
 @Service
 public class FriendsBookServicesImplementation implements FriendsBookService {
@@ -34,8 +33,8 @@ public class FriendsBookServicesImplementation implements FriendsBookService {
 	}
 
 	@Override
-	public void addUserToFriendList(int userId, int friendId) throws GeneralSecurityException {
-		userDao.addUserToFriendList(userId,friendId);
+	public void addUserToFriendList(FriendDto friendDto) {
+		userDao.addUserToFriendList(friendDto.getUserId(), friendDto.getFriendId());
 	}
 
 	@Override
@@ -45,8 +44,8 @@ public class FriendsBookServicesImplementation implements FriendsBookService {
 	}
 
 	@Override
-	public void removeAnotherUserFromFriendList(int userId,int friendId) {
-		userDao.removeAnotherUserFromFriendList(userId,friendId);
+	public void removeAnotherUserFromFriendList(FriendDto friendDto) {
+		userDao.removeAnotherUserFromFriendList(friendDto.getUserId(), friendDto.getFriendId());
 	}
 
 }
